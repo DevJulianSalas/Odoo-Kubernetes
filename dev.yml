@@ -1,0 +1,23 @@
+version: '2'
+services:
+  web:
+    image: odoo:11
+    container_name: odoo-server
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+  db:
+    image: postgres:9.4
+    container_name: odoo-db-dev
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+
+volumes:
+  db-data:

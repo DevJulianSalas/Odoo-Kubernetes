@@ -1,0 +1,17 @@
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name:  oddo-app-pod
+#   labels:
+#     app: oddoServerPod
+# spec:
+#   containers:
+#     - name: odoo-server
+#       image: odoo:11
+#       ports:
+#       - name: odoo-port
+#         containerPort: 8069
+    
+
+
+

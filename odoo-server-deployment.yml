@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: odoo-app-deployment
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: odooServer
+    spec:
+      containers:
+        - name: odoo-server
+          image: odoo:11
+          ports:
+          - name: oddo-http-port
+            containerPort: 8069
+          env:
+            - name: HOST
+              value: 127.0.0.1
+        
+        - name: odoo-db
+          image: postgres:9.4
+          ports:
+          - name: oddo-db-port
+            containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: odoo-secrets
+                  key: postgres_password
+            - name: POSTGRES_USER
+              value: odoo
+
+          
+
+  
+
+  
+
+  
